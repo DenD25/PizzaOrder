@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace PizzaOrder.Controllers
 {
-    public class HomeController : Controller
+    public class MainController : Controller
     {
         public IActionResult Index()
         {
