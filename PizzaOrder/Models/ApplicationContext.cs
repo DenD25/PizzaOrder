@@ -7,6 +7,9 @@ namespace PizzaOrder.Models
         public DbSet<Pizza>? Pizzas { get; set; }
         public DbSet<PizzaComponent>? PizzaComponents { get; set; }
 
+        public DbSet<User>? Users { get; set; }
+        public DbSet<Role>? Roles { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
@@ -24,6 +27,13 @@ namespace PizzaOrder.Models
                 .Entity<PizzaComponent>()
                 .HasMany(t => t.Pizzas)
                 .WithMany(t => t.PizzaComponents);
+
+            modelBuilder
+                .Entity<Role>()
+                .HasMany(t => t.Users)
+                .WithOne(t => t.Role)
+                .HasForeignKey(t => t.RoleId)
+                .HasPrincipalKey(t => t.Id);
         }
     }
 }
