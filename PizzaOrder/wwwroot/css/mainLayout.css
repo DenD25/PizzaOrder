@@ -1,0 +1,9 @@
+﻿body {
+    background-image: url("../images/background/pizza-main.png");
+    background-repeat: no-repeat;
+    backdrop-filter: blur(2px);
+}
+
+header {
+    
+}
