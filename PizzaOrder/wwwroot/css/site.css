@@ -1,5 +1,14 @@
-p{
+p,h1,h2,h2,h4,h5,h6{
     margin-bottom:0;
+}
+
+h2 {
+    color: #E5B350;
+}
+
+a{
+    text-decoration:none;
+    color:black;
 }
 
 header {
@@ -36,7 +45,11 @@ main {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 8px 8px;
     margin: 0 auto;
-    padding-top: 60px;
+    padding: 80px 20px 20px 20px;
+    border-radius:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 footer {
@@ -58,4 +71,46 @@ footer {
 
 .icons{
     margin: 0 1rem;
+}
+
+
+/* FORM PART */
+
+.form-container {
+    text-align:center;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    margin: 0 auto;
+}
+
+.form-title{
+    padding-bottom: 20px;
+}
+
+
+.submit-btn {
+    background-color: #E5B350;
+    color: white;
+    width: 148px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+}
+
+input[type=text], input[type=password] {
+    width: 344px;
+    height: 44px;
+    border: 1px solid #808080;  
+    padding-left: 15px;
+}
+
+input {
+    margin:25px auto 0 auto;
 }
