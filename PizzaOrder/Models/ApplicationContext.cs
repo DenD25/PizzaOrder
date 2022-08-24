@@ -41,6 +41,13 @@ namespace PizzaOrder.Models
             Role managerRole = new Role { Id = 2, Name = "manager" };
 
             modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, managerRole, userRole });
+
+            // Adding users
+
+            User adminUser = new User { Id = 1, Login = "admin", Password = "admin", RoleId = adminRole.Id  };
+            User managerUser = new User { Id = 2, Login = "manager", Password = "manager", RoleId = managerRole.Id };
+
+            modelBuilder.Entity<User>().HasData(new User[] { adminUser, managerUser });
         }
     }
 }
