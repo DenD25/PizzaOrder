@@ -5,14 +5,14 @@ namespace PizzaOrder.Models
     public class RegisterModel
     {
         [Required(ErrorMessage = "Login is required")]
-        public string? Login { get; set; }
+        public string Login { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
-        public string? Password { get; set; }
-
+        public string Password { get; set; }
+        [Required(ErrorMessage = "Field is required")]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [Compare("Password",ErrorMessage = "Passwords don`t match")]
         public string? ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
