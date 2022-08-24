@@ -34,6 +34,13 @@ namespace PizzaOrder.Models
                 .WithOne(t => t.Role)
                 .HasForeignKey(t => t.RoleId)
                 .HasPrincipalKey(t => t.Id);
+
+            // Adding roles
+            Role adminRole = new Role { Id = 1, Name = "admin" };
+            Role userRole = new Role { Id = 2, Name = "user" };
+            Role managerRole = new Role { Id = 2, Name = "manager" };
+
+            modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, managerRole, userRole });
         }
     }
 }
