@@ -15,7 +15,7 @@ namespace PizzaOrder.Models
         public string? City { get; set; }
         public string? StreetName { get; set; }
         public string? HouseNumber { get; set; }
-        public int ApartmentsNumber { get; set; }
-        public int PostCode { get; set; }
+        public string? ApartmentsNumber { get; set; }
+        public string? PostCode { get; set; }
     }
 }

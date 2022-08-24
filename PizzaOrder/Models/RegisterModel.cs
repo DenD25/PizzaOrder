@@ -26,7 +26,7 @@ namespace PizzaOrder.Models
         public string? StreetName { get; set; }
         [Required(ErrorMessage = "Field is required")]
         public string? HouseNumber { get; set; }
-        public int ApartmentsNumber { get; set; }
-        public int PostCode { get; set; }
+        public string? ApartmentsNumber { get; set; }
+        public string? PostCode { get; set; }
     }
 }
