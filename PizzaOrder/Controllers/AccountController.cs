@@ -81,14 +81,14 @@ namespace PizzaOrder.Controllers
 
                     if (user.Role.Name.ToString() == "admin")
                     {
-                        return RedirectToRoute("areas", new { area = "Admin", controller = "Home", action = "Index" });
+                        return RedirectToRoute("adminRoute", new { area = "Admin", controller = "Main", action = "Index" });
                     }
                     if (user.Role.Name.ToString() == "manager")
                     {
-                        return RedirectToRoute("areas", new { area = "Manager", controller = "Home", action = "Index" });
+                        return RedirectToRoute("managerRoute", new { area = "Manager", controller = "Main", action = "Index" });
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Main");
                 }
                 ModelState.AddModelError("", "Incorrect login or password");
             }
