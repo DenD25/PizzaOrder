@@ -37,9 +37,11 @@ namespace PizzaOrder.Controllers
                         Password = model.Password,
                         PhoneNumber = model.PhoneNumber,
                         Email = model.Email,
+                        City = model.City,
                         ApartmentsNumber = model.ApartmentsNumber,
                         HouseNumber = model.HouseNumber,
-                        StreetName = model.HouseNumber
+                        StreetName = model.StreetName,
+                        PostCode = model.PostCode
                     };
                     Role userRole = await db.Roles.FirstOrDefaultAsync(x => x.Name == "user");
                     if (userRole != null)
