@@ -18,13 +18,15 @@ namespace PizzaOrder.Models
         [Required(ErrorMessage = "Phone number is required")]
         [DataType(DataType.PhoneNumber)]
         public int PhoneNumber { get; set; }
-
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
+        [Required(ErrorMessage = "Field is required")]
+        public string? City { get; set; }
         [Required(ErrorMessage = "Field is required")]
         public string? StreetName { get; set; }
         [Required(ErrorMessage = "Field is required")]
         public string? HouseNumber { get; set; }
         public int ApartmentsNumber { get; set; }
+        public int PostCode { get; set; }
     }
 }
