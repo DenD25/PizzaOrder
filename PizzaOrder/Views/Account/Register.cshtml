@@ -10,34 +10,34 @@
         <input type="text" asp-for="Login" placeholder="Login"/>
         <input type="email" asp-for="Email" placeholder="Email(optional)"/>
     </div>
-    <div class="form-invalid">
-        <span style="width:50%;" class="text-danger" asp-validation-for="Login"></span>
-        <span class="text-danger" asp-validation-for="Email"></span>
+    <div class="form-invalid-flex">
+        <span style="width:50%;" asp-validation-for="Login"></span>
+        <span asp-validation-for="Email"></span>
     </div>
     <div class="form-group">
         <input type="password" asp-for="Password" placeholder="Password"/>
         <input type="text" asp-for="City" placeholder="City"/>
     </div>
-    <div class="form-invalid">
-        <span style="width:50%;" class="text-danger" asp-validation-for="Password"></span>
-        <span style="width:50%;" class="text-danger" asp-validation-for="City"></span>
+    <div class="form-invalid-flex">
+        <span style="width:50%;" asp-validation-for="Password"></span>
+        <span style="width:50%;" asp-validation-for="City"></span>
     </div> 
     <div class="form-group">
         <input type="password" asp-for="ConfirmPassword"  placeholder="Confirm password"/>
         <input style="width:220px" type="text" asp-for="StreetName" placeholder="Street"/>
         <input style="width:60px" type="number" asp-for="HouseNumber" placeholder="No"/>
     </div>
-    <div class="form-invalid">
-        <span style="width:50%;float:left;" class="text-danger" asp-validation-for="ConfirmPassword"></span>
-        <span class="text-danger" asp-validation-for="StreetName"></span>
-        <span class="text-danger" asp-validation-for="HouseNumber"></span>
+    <div class="form-invalid-flex">
+        <span style="width:50%;float:left;" asp-validation-for="ConfirmPassword"></span>
+        <span asp-validation-for="StreetName"></span>
+        <span asp-validation-for="HouseNumber"></span>
     </div> 
     <div class="form-group">
         <input type="tel" pattern="[0-9]{9}" asp-for="PhoneNumber" ma placeholder="Phone number"/>
         <input style="width:140px" type="number" asp-for="ApartmentsNumber" placeholder="Apart. No(optional)"/>
         <input style="width:140px" type="number" asp-for="PostCode" placeholder="Post code(optional)"/>
     </div>
-    <div class="form-invalid">
+    <div class="form-invalid-flex">
         <span style="width:50%;" class="text-danger" asp-validation-for="PhoneNumber"></span>
     </div> 
     <div class="form-group">
