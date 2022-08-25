@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PizzaOrder.Models;
 
 namespace PizzaOrder.Areas.Admin.Controllers
@@ -14,9 +15,9 @@ namespace PizzaOrder.Areas.Admin.Controllers
             db = context;
 
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(db.PizzaComponents.ToList());
+            return View(await db.PizzaComponents.ToListAsync());
         }
 
         public IActionResult PizzaComAdd()
@@ -30,6 +31,26 @@ namespace PizzaOrder.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 db.PizzaComponents.Add(pizzaComponent);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(pizzaComponent);
+            }
+        }
+
+        public IActionResult PizzaComEdit(int id)
+        {
+            return View(db.PizzaComponents.FirstOrDefault(x => x.Id == id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PizzaComEdit(PizzaComponent pizzaComponent)
+        {
+            if (ModelState.IsValid)
+            {
+                db.PizzaComponents.Update(pizzaComponent);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
