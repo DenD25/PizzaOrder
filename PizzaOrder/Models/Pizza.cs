@@ -11,6 +11,8 @@ namespace PizzaOrder.Models
         public string? Name { get; set; }
         [Required]
         public float Price { get; set; }
+        public string? PhotoName { get; set; }
+        public string? PhotoPath { get; set; }
         public ICollection<PizzaComponent>? PizzaComponents { get; set; }
     }
 }
