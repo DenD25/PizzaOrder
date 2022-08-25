@@ -47,9 +47,6 @@ main {
     margin: 0 auto;
     padding: 80px 20px 20px 20px;
     border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 }
 
 footer {
@@ -79,6 +76,7 @@ footer {
 .form-container {
     text-align:center;
     width: 650px;
+    margin: auto auto;
 }
 
 .form-group {
