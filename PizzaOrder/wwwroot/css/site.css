@@ -70,6 +70,10 @@ footer {
     margin: 0 1rem;
 }
 
+.flex {
+    display: flex;
+    justify-content: center;
+}
 
 /* FORM PART */
 
@@ -109,6 +113,48 @@ footer {
     padding: 10px 0;
 }
 
+
+/* INPUTS */
+
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=tel] {
+    width: 300px;
+    height: 45px;
+    border: 1px solid #808080;
+    padding-left: 15px;
+    font-size: 12px;
+}
+
+input {
+    margin:25px auto 0 auto;
+}
+
+
+/* BUTTONS */
+
+.edit-btn {
+    display:block;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    background-color: #FFCD40;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 0;
+    transition: 0.3s;
+}
+
+.delete-btn {
+    display: block;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    background-color: #FF4040;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 0;
+    transition: 0.3s;
+}
+
 .submit-btn {
     background-color: #E5B350;
     color: white;
@@ -133,21 +179,4 @@ footer {
     border: none;
     border-radius: 20px;
     margin: 0 0;
-}
-
-input[type=text], input[type=password], input[type=email], input[type=number], input[type=tel] {
-    width: 300px;
-    height: 45px;
-    border: 1px solid #808080;
-    padding-left: 15px;
-    font-size: 12px;
-}
-
-input {
-    margin:25px auto 0 auto;
-}
-
-.flex{
-    display:flex;
-    justify-content:center;
 }
