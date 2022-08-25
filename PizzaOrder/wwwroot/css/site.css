@@ -105,6 +105,12 @@ footer {
     color: red;
 }
 
+.form-link {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
 .submit-btn {
     background-color: #E5B350;
     color: white;
