@@ -16,7 +16,7 @@ namespace PizzaOrder.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View(db.PizzaComponents.ToList());
         }
 
         public IActionResult PizzaComAdd()
