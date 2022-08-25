@@ -165,7 +165,7 @@ input {
     align-items: center;
     border: none;
     border-radius: 20px;
-    margin: 0 1rem;
+    margin: 0 auto;
 }
 
 .logout-btn {
