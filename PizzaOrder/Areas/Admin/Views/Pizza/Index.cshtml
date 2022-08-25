@@ -1,0 +1,26 @@
+﻿@model IEnumerable<PizzaOrder.Models.Pizza>
+
+<div class="flex">
+    <a class="submit-btn" asp-action="PizzaAdd" asp-controller="Pizza">Add pizza</a>
+    <a class="submit-btn" asp-action="Index" asp-controller="Main">Return</a>
+</div>
+
+<table class="table">
+    <tr>
+       <th></th>
+       <th>Pizzas</th>
+       <th>Price</th>
+       <th></th>
+       <th></th>     
+    <tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td><img /></td>
+        <td>@item.Name</td>
+        <td>@item.Price</td>
+        <td>@Html.ActionLink("Edit", "PizzaEdit", new {  id=item.Id  }, new {@class = "edit-btn"})</td>
+        <td>@Html.ActionLink("Delete", "PizzaDelete", new {  id=item.Id  }, new {@class = "delete-btn"})</td>
+    </tr>
+    }
+</table>
