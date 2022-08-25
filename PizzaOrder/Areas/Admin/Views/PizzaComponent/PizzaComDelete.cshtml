@@ -1,0 +1,18 @@
+﻿@model PizzaOrder.Models.PizzaComponent
+
+<div class="form-container">
+    <div class="form-title">
+        <h2>Deleting genre</h2>
+    </div>
+    <div class="form-title">
+        <h5>Genre: @Model.Name</h5>
+    </div>
+    <form asp-action="PizzaComDelete" asp-controller="PizzaComponent">
+        <div class="form-group">
+            <input class="submit-btn" type="submit" value="Delete" />
+        </div>
+        <div class="form-group">
+            <a class="submit-btn" asp-action="Index">Return</a>
+        </div>
+    </form>  
+</div>

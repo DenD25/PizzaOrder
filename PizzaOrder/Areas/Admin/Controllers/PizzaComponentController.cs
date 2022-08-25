@@ -59,5 +59,17 @@ namespace PizzaOrder.Areas.Admin.Controllers
                 return View(pizzaComponent);
             }
         }
+        public IActionResult PizzaComDelete(int id)
+        {
+            return View(db.PizzaComponents.FirstOrDefault(x => x.Id == id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PizzaComDelete(PizzaComponent pizzaComponent)
+        {
+            db.PizzaComponents.Remove(pizzaComponent);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -16,7 +16,7 @@
     <tr>
         <td>@item.Name</td>
         <td>@Html.ActionLink("Edit", "PizzaComEdit", new {  id=item.Id  }, new {@class = "edit-btn"})</td>
-        <td>@Html.ActionLink("Delete", "", new {  id=item.Id  }, new {@class = "delete-btn"})</td>
+        <td>@Html.ActionLink("Delete", "PizzaComDelete", new {  id=item.Id  }, new {@class = "delete-btn"})</td>
     </tr>
     }
 </table>
