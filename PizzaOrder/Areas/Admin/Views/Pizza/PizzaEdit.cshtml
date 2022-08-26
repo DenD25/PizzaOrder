@@ -1,0 +1,46 @@
+﻿@model PizzaOrder.ViewModel.PizzaViewModel
+
+<div class="form-container">
+    <form asp-action="PizzaEdit" asp-controller="Pizza" enctype="multipart/form-data">
+        <div class="form-title">
+            <h2>Edit pizza</h2>
+        </div>
+        <div class="form-group">
+            <input type="text" asp-for="Pizza.Name" placeholder="Name"/>
+        </div>
+        <div class="form-invalid">
+            <span class="text-danger" asp-validation-for="Pizza.Name"></span>
+        </div>
+        <div class="form-group">
+            <input type="number" asp-for="Pizza.Price" placeholder="Price"/>
+        </div>
+        <div class="form-invalid">
+            <span class="text-danger" asp-validation-for="Pizza.Price"></span>
+        </div>
+        <div>
+        <div class="flex">
+            <select multiple name="comId">
+                @foreach(var item in Model.PizzaComponents)
+                {               
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>           
+        </div>
+        <div class="form-group">
+            <label>Current photo:</label>
+            <img class="icon" src="@Model.Pizza.PhotoPath"/>
+        </div>
+        <div class="form-group">
+            <input style="margin-bottom:1rem;" type="file" name="uploadedFile" /><br>
+            <input type="hidden" asp-for="Pizza.PhotoName" value="@Model.Pizza.PhotoName"/>
+            <input type="hidden" asp-for="Pizza.PhotoPath" value="@Model.Pizza.PhotoPath"/>
+        </div>
+        </div>
+        <div class="form-group">
+            <input class="submit-btn" type="submit" value="Add" />
+        </div>
+        <div class="form-link">
+            <a class="submit-btn" asp-action="Index">Return</a>
+        </div>
+    </form>  
+</div>  
