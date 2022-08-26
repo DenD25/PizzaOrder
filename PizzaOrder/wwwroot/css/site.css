@@ -185,3 +185,10 @@ input {
     border-radius: 20px;
     margin: 0 0;
 }
+
+/* IMAGES */
+
+.icon{
+    height: 60px;
+    width: 60px;
+}

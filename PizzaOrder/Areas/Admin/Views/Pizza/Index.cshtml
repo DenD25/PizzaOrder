@@ -7,7 +7,7 @@
 
 <table class="table">
     <tr>
-       <th></th>
+       <th>Photo</th>
        <th>Pizzas</th>
        <th>Price</th>
        <th></th>
@@ -16,7 +16,7 @@
     @foreach (var item in Model)
     {
     <tr>
-        <td><img /></td>
+        <td><img class="icon" src="@item.PhotoPath"/></td>
         <td>@item.Name</td>
         <td>@item.Price</td>
         <td>@Html.ActionLink("Edit", "PizzaEdit", new {  id=item.Id  }, new {@class = "edit-btn"})</td>
