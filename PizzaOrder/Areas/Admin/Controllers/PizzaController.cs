@@ -32,7 +32,7 @@ namespace PizzaOrder.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PizzaAdd(Pizza pizza, IList<int> comId, IFormFile uploadedFile)
+        public async Task<IActionResult> PizzaAdd(Pizza pizza, IList<int> comId, IFormFile? uploadedFile)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +57,53 @@ namespace PizzaOrder.Areas.Admin.Controllers
                 }
                 pizza.PizzaComponents = pizzaComponents;
                 db.Pizzas.Add(pizza);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(pizza);
+            }
+        }
+
+        public IActionResult PizzaEdit( int id )
+        {
+            List<PizzaComponent> pizzaComponents = db.PizzaComponents.ToList();
+            Pizza pizza = db
+                .Pizzas
+                .FirstOrDefault(x => x.Id == id);
+
+            PizzaViewModel pvm = new PizzaViewModel { PizzaComponents = pizzaComponents, Pizza = pizza };
+
+            return View(pvm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PizzaEdit(Pizza pizza, IList<int> comId, IFormFile? uploadedFile)
+        {
+            if (ModelState.IsValid)
+            {
+                if (uploadedFile != null)
+                {
+                    pizza.PhotoName = uploadedFile.FileName;
+                    string path = "/images/pizzas/" + uploadedFile.FileName;
+                    pizza.PhotoPath = path;
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await uploadedFile.CopyToAsync(fileStream);
+                    }
+                }
+
+                List<PizzaComponent> pizzaComponents = new List<PizzaComponent>();
+                foreach (var item in comId)
+                {
+                    PizzaComponent component = db
+                        .PizzaComponents
+                        .FirstOrDefault(x => x.Id == item);
+                    pizzaComponents.Add(component);
+                }
+                pizza.PizzaComponents = pizzaComponents;
+                db.Pizzas.Update(pizza);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
