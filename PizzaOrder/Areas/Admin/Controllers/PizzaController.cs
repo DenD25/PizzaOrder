@@ -113,5 +113,28 @@ namespace PizzaOrder.Areas.Admin.Controllers
                 return View(pizza);
             }
         }
+
+        public IActionResult PizzaDelete(int id)
+        {
+            List<PizzaComponent> pizzaComponents = db
+                .PizzaComponents
+                .Where(x => x.Pizzas.Where(x => x.Id == id).Any())
+                .ToList();
+            Pizza pizza = db
+                .Pizzas
+                .FirstOrDefault(x => x.Id == id);
+
+            PizzaViewModel pvm = new PizzaViewModel { PizzaComponents = pizzaComponents, Pizza = pizza };
+
+            return View(pvm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PizzaDelete(Pizza pizza)
+        {
+            db.Pizzas.Remove(pizza);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
