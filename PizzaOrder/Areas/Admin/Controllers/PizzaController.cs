@@ -79,10 +79,11 @@ namespace PizzaOrder.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PizzaEdit(Pizza pizza, IList<int> comId, IFormFile? uploadedFile)
+        public async Task<IActionResult> PizzaEdit(Pizza pizza, IList<int> comId, IFormFile? uploadedFile, int Id)
         {
             if (ModelState.IsValid)
             {
+                pizza.Id = Id;
                 if (uploadedFile != null)
                 {
                     pizza.PhotoName = uploadedFile.FileName;
