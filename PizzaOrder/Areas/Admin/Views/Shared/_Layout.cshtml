@@ -14,9 +14,7 @@
             <div class="header-logo">
                 <h1>Pizza</h1>
             </div>
-            <div class="header-links">
-                <a>Menu</a>
-                <a>Address</a>
+            <div class="header-links" style="justify-content:flex-end;">
                 <form asp-controller = "Account" asp-action="LogOut" asp-route-area=""> 
                     <input type = "submit" value = "Log out" class="logout-btn"/> 
                 </form> 
@@ -26,18 +24,9 @@
     <main>
         @RenderBody()
     </main>
-    <footer>
-        <div>
-            <p style="font-size:18px;">Address: Warszaw, Gdanska 120<br />Phone number: 222 333 444<br />Email: pizza@oder.com</p>
-        </div>
+    <footer class="flex">
         <div>
             <a href="https://github.com/DenD25">https://github.com/DenD25</a>
-        </div>
-        <div class="footer-icons">
-            <a class="icons"><img src="~/images/icons/facebook.png" /></a>
-            <a class="icons"><img src="~/images/icons/instagram.png" /></a>
-            <a class="icons"><img src="~/images/icons/messenger.png" /></a>
-            <a class="icons"><img src="~/images/icons/maps-and-flags.png" /></a>          
         </div>
     </footer>
 </body>
