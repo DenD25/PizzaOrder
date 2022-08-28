@@ -19,8 +19,6 @@
   <ItemGroup>
     <Folder Include="Areas\Manager\Controllers\" />
     <Folder Include="Areas\Manager\Views\" />
-    <Folder Include="Areas\User\Controllers\" />
-    <Folder Include="Areas\User\Views\" />
     <Folder Include="wwwroot\images\pizzas\" />
   </ItemGroup>
 

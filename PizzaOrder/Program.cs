@@ -23,6 +23,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Using authentication
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 // Routing
