@@ -1,0 +1,44 @@
+﻿@model PizzaOrder.Models.User
+ 
+<div class="form-container">
+    <form asp-action="Index" asp-controller="Profile">
+    <div class="form-title">
+         <h2>Your profile</h2>
+    </div> 
+    <div class="form-group">
+        <input type="text" asp-for="Login" placeholder="@Model.Login" disabled/>
+        @if(@Model.Email != null){
+            <input type="email" asp-for="Email" placeholder="@Model.Email" disabled/>       
+        }
+        else
+        {
+            <input type="email" asp-for="Email" placeholder="Email field is empty" disabled/>
+        }         
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="City" placeholder="@Model.City" disabled/>
+         <input style="width:220px" type="text" asp-for="StreetName" placeholder="@Model.StreetName" disabled/>
+        <input style="width:60px" type="number" asp-for="HouseNumber" placeholder="@Model.HouseNumber" disabled/>
+    </div>
+    <div class="form-group">
+        <input type="tel" asp-for="PhoneNumber" placeholder="@Model.PhoneNumber" disabled/>
+        @if(@Model.Email != null){
+            <input type="email" asp-for="ApartmentsNumber" placeholder="@Model.ApartmentsNumber" disabled/>       
+        }
+        else
+        {
+            <input style="width:140px" type="number" asp-for="ApartmentsNumber" placeholder="Apart. No field is empty" disabled/>
+        }          
+        @if(@Model.Email != null){
+            <input type="email" asp-for="PostCode" placeholder="@Model.PostCode" disabled/>       
+        }
+        else
+        {
+            <input style="width:140px" type="number" asp-for="PostCode" placeholder="Post code field is empty" disabled/>
+        }          
+    </div>
+    <div class="form-group" style="margin-top:20px">
+        <a class="submit-btn" asp-action="Index" asp-controller="Home">Return</a>
+    </div>        
+    </form>
+</div>
