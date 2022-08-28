@@ -12,9 +12,39 @@ namespace PizzaOrder.Areas.User.Controllers
         {
             db = context;
         }
+
         public async Task<IActionResult> Index(int id)
         {
              return  View(await db.Users.FirstOrDefaultAsync(x => x.Id == id));
+        }
+
+        public async Task<IActionResult> ProfileEdit(int id)
+        {
+            return View(await db.Users.FirstOrDefaultAsync(x => x.Id == id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProfileEdit(Models.User model, int id)
+        {          
+            if (ModelState.IsValid)
+            {
+                Models.User user = db.Users.FirstOrDefault(x => x.Id == id);
+                user.Login = model.Login;
+                user.Email = model.Email;
+                user.City = model.City;
+                user.HouseNumber = model.HouseNumber;
+                user.ApartmentsNumber = model.ApartmentsNumber;
+                user.StreetName = model.StreetName;
+                user.PostCode = model.PostCode;
+
+                db.Users.Update(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }
