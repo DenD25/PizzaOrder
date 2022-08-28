@@ -1,0 +1,59 @@
+﻿@model PizzaOrder.Models.User
+ 
+<div class="form-container">
+    <form asp-action="ProfileEdit" asp-controller="Profile">
+    <div class="form-title">
+         <h2>Edit profile</h2>
+    </div> 
+    <div class="form-group">
+        <input type="text" asp-for="Login" placeholder="@Model.Login"/>
+        @if(@Model.Email != null){
+            <input type="email" asp-for="Email" placeholder="@Model.Email"/>       
+        }
+        else
+        {
+            <input type="email" asp-for="Email" placeholder="Email"/>
+        }         
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;" asp-validation-for="Login"></span>
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="City" placeholder="@Model.City" />
+         <input style="width:220px" type="text" asp-for="StreetName" placeholder="@Model.StreetName"/>
+        <input style="width:60px" type="number" asp-for="HouseNumber" placeholder="@Model.HouseNumber"/>
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;float:left;" asp-validation-for="City"></span>
+        <span asp-validation-for="StreetName"></span>
+        <span asp-validation-for="HouseNumber"></span>
+    </div> 
+    <div class="form-group">
+        <input type="tel" pattern="[0-9]{9}" asp-for="PhoneNumber" placeholder="@Model.PhoneNumber" />
+        @if(@Model.Email != null){
+            <input type="email" asp-for="ApartmentsNumber" placeholder="@Model.ApartmentsNumber" />       
+        }
+        else
+        {
+            <input style="width:140px" type="number" asp-for="ApartmentsNumber" placeholder="Apart. No"/>
+        }          
+        @if(@Model.Email != null){
+            <input type="email" asp-for="PostCode" placeholder="@Model.PostCode"/>       
+        }
+        else
+        {
+            <input style="width:140px" type="number" asp-for="PostCode" placeholder="Post code"/>
+        }          
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;" class="text-danger" asp-validation-for="PhoneNumber"></span>
+    </div> 
+    <div class="form-group" "margin-top:20px">
+         <input type="submit" value="Save" class="submit-btn" />
+    </div> 
+    <div class="form-group" style="margin-top:20px">
+        <a class="submit-btn" asp-action="Index" asp-controller="Profile">Return</a>
+    </div>        
+    </form>
+</div>
