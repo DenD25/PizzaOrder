@@ -20,7 +20,6 @@
                 <a>Menu</a>
                 <a>Address</a>
                 @Html.ActionLink("Profile", "Index", "Profile", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() })
-                <a asp-action="Index" asp-controller="Profile" asp-area="User">Profile</a>
                 <form asp-controller = "Account" asp-action="LogOut" asp-route-area=""> 
                     <input type = "submit" value = "Log out" class="logout-btn"/> 
                 </form> 
