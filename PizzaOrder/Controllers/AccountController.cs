@@ -52,10 +52,10 @@ namespace PizzaOrder.Controllers
 
                     await Authenticate(user);
 
-                    return RedirectToAction("Index", "Main");
+                    return RedirectToRoute("userRoute", new { area = "User", controller = "Home", action = "Index" });
                 }
                 else
-                    ModelState.AddModelError("", "Incorrect login or password");
+                    ModelState.AddModelError("", "Change login");
             }
             return View(model);
         }
@@ -77,7 +77,7 @@ namespace PizzaOrder.Controllers
                     .FirstOrDefaultAsync(x => x.Login == model.Login && x.Password == model.Password);
                 if (user != null)
                 {
-                    await Authenticate(user); // аутентификация
+                    await Authenticate(user);
 
                     if (user.Role.Name.ToString() == "admin")
                     {
@@ -88,7 +88,7 @@ namespace PizzaOrder.Controllers
                         return RedirectToRoute("managerRoute", new { area = "Manager", controller = "Main", action = "Index" });
                     }
 
-                    return RedirectToAction("Index", "Main");
+                    return RedirectToRoute("userRoute", new { area = "User", controller = "Home", action = "Index" });
                 }
                 ModelState.AddModelError("", "Incorrect login or password");
             }
@@ -108,7 +108,8 @@ namespace PizzaOrder.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name),
+                new Claim("Id", user.Id.ToString())
             };
 
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
