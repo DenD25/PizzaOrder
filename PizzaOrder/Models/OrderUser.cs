@@ -13,8 +13,8 @@ namespace PizzaOrder.Models
         [StringLength(30)]
         public string? Name { get; set; }
         public ICollection<Pizza>? Pizzas { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public bool IsDone { get; set; } = false;
+        public DateTime? CreateTime { get; set; }
+        public DateTime? EndTime { get; set; }
+        public bool? IsDone { get; set; } = false;
     }
 }
