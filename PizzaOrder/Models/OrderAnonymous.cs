@@ -4,7 +4,7 @@ namespace PizzaOrder.Models
 {
     public class OrderAnonymous
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Phone number is required")]
         [DataType(DataType.PhoneNumber)]
