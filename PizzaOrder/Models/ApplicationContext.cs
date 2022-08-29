@@ -35,6 +35,16 @@ namespace PizzaOrder.Models
                 .HasForeignKey(t => t.RoleId)
                 .HasPrincipalKey(t => t.Id);
 
+            modelBuilder
+                .Entity<OrderUser>()
+                .HasMany(t => t.Pizzas)
+                .WithMany(t => t.OrderUsers);
+
+            modelBuilder
+                .Entity<OrderAnonymous>()
+                .HasMany(t => t.Pizzas)
+                .WithMany(t => t.OrderAnonymous);
+
             // Adding roles
             Role adminRole = new Role { Id = 1, Name = "admin" };
             Role userRole = new Role { Id = 2, Name = "user" };
