@@ -14,5 +14,7 @@ namespace PizzaOrder.Models
         public string? PhotoName { get; set; }
         public string? PhotoPath { get; set; }
         public ICollection<PizzaComponent>? PizzaComponents { get; set; }
+        public ICollection<OrderUser>? OrderUsers { get; set; }
+        public ICollection<OrderAnonymous>? OrderAnonymous { get; set; }
     }
 }
