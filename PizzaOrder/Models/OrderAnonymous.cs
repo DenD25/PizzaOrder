@@ -8,7 +8,7 @@ namespace PizzaOrder.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Phone number is required")]
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public int? PhoneNumber { get; set; }
         [Required(ErrorMessage = "Field is required")]
         public string? City { get; set; }
         [Required(ErrorMessage = "Field is required")]
@@ -20,7 +20,7 @@ namespace PizzaOrder.Models
         [Required(ErrorMessage = "Please, write your name.")]
         [StringLength(30)]
         public string? Name { get; set; }
-        public ICollection<Pizza>? pizzas { get; set; }
+        public ICollection<Pizza>? Pizzas { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime EndTime { get; set; }
         public bool IsDone { get; set; } = false;

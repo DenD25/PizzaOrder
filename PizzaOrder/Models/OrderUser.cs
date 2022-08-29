@@ -12,7 +12,7 @@ namespace PizzaOrder.Models
         [Required(ErrorMessage = "Please, write your name.")]
         [StringLength(30)]
         public string? Name { get; set; }
-        public ICollection<Pizza>? pizzas { get; set; }
+        public ICollection<Pizza>? Pizzas { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime EndTime { get; set; }
         public bool IsDone { get; set; } = false;
