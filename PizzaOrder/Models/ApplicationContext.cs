@@ -58,6 +58,34 @@ namespace PizzaOrder.Models
             User managerUser = new User { Id = 2, Login = "manager", Password = "manager", RoleId = managerRole.Id, PhoneNumber = 888888888, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "1" };
 
             modelBuilder.Entity<User>().HasData(new User[] { adminUser, managerUser });
+
+            // Adding components
+
+            PizzaComponent tomatoPaste = new PizzaComponent { Id = 1, Name = "Tomato paste" };
+            PizzaComponent cheese = new PizzaComponent { Id = 2, Name = "Cheese" };
+            PizzaComponent mozzarella = new PizzaComponent { Id = 3, Name = "Mozzarella" };
+            PizzaComponent egg = new PizzaComponent { Id = 4, Name = "Egg" };
+            PizzaComponent mushroom = new PizzaComponent { Id = 5, Name = "Mushroom" };
+            PizzaComponent pineapple = new PizzaComponent { Id = 6, Name = "Pineapple" };
+            PizzaComponent olives = new PizzaComponent { Id = 7, Name = "Olives" };
+            PizzaComponent tomato = new PizzaComponent { Id = 8, Name = "Tomato" };
+            PizzaComponent pepper = new PizzaComponent { Id = 9, Name = "Pepper" };
+            PizzaComponent onion = new PizzaComponent { Id = 10, Name = "Onion" };
+            PizzaComponent corn = new PizzaComponent { Id = 11, Name = "Corn" };
+            PizzaComponent pickles = new PizzaComponent { Id = 12, Name = "Pickles" };
+            PizzaComponent greens = new PizzaComponent { Id = 13, Name = "Greens" };
+            PizzaComponent salami = new PizzaComponent { Id = 14, Name = "Salami" };
+            PizzaComponent ham = new PizzaComponent { Id = 15, Name = "Ham" };
+            PizzaComponent becon = new PizzaComponent { Id = 16, Name = "Becon" };
+            PizzaComponent chicken = new PizzaComponent { Id = 17, Name = "Chicken" };
+            PizzaComponent tuna = new PizzaComponent { Id = 18, Name = "Tuna" };
+            PizzaComponent shrimps = new PizzaComponent { Id = 19, Name = "Shrimps" };
+
+            modelBuilder.Entity<PizzaComponent>().HasData(new PizzaComponent[] {
+                tomatoPaste, cheese, mozzarella, egg, mushroom, pineapple, olives, tomato, pepper, onion, corn, pickles, greens, salami, ham, becon, chicken, tuna, shrimps
+            });
+
+           
         }
     }
 }
