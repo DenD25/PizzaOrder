@@ -10,6 +10,8 @@ namespace PizzaOrder.Models
         public DbSet<User>? Users { get; set; }
         public DbSet<Role>? Roles { get; set; }
 
+
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
@@ -87,67 +89,24 @@ namespace PizzaOrder.Models
             });
 
             // Adding pizzas
-
-            List<PizzaComponent> carbonaraComponents = new List<PizzaComponent>()
-            {
-                tomatoPaste,
-                ham,
-                becon,
-                mushroom,
-                tomato,
-                cheese,
-                egg,
-                onion
-            };
             Pizza carbonara = new Pizza 
             { 
-                Id = 1, Name = "Carbonara", PhotoName = "Carbonara", PhotoPath = "~/images/pizzas/Carbonara.png", Price = 30, PizzaComponents = carbonaraComponents 
+                Id = 1, Name = "Carbonara", PhotoName = "Carbonara", PhotoPath = "/images/pizzas/Carbonara.png", Price = 30  
             };
 
-            List<PizzaComponent> hawaiianComponents = new List<PizzaComponent>()
-            {
-                tomatoPaste,
-                ham,
-                chicken,
-                pineapple,
-                mozzarella,
-                cheese,
-                corn,
-                greens
-            };
             Pizza hawaiian = new Pizza 
             { 
-                Id = 2, Name = "Hawaiian", PhotoName = "Hawaiian", PhotoPath = "~/images/pizzas/Hawaiian.png", Price = 25, PizzaComponents = hawaiianComponents
+                Id = 2, Name = "Hawaiian", PhotoName = "Hawaiian", PhotoPath = "/images/pizzas/Hawaiian.png", Price = 25
             };
 
-            List<PizzaComponent> margeritaComponents = new List<PizzaComponent>()
-            {
-                tomatoPaste,
-                cheese,
-                mozzarella,
-                tomato,
-                greens
-            };
             Pizza margerita = new Pizza
             {
-                Id = 3, Name = "Margerita", PhotoName = "Margerita", PhotoPath = "~/images/pizzas/Margerita.png", Price = 20, PizzaComponents = margeritaComponents
+                Id = 3, Name = "Margerita", PhotoName = "Margerita", PhotoPath = "/images/pizzas/Margerita.png", Price = 20
             };
 
-            List<PizzaComponent> pepperoniComponents = new List<PizzaComponent>() 
-            {
-                tomatoPaste,
-                salami,
-                becon,
-                tomato,
-                pepper,
-                mushroom,
-                olives,
-                cheese,
-                greens
-            };
             Pizza pepperoni = new Pizza
             {
-                Id = 4, Name = "Pepperoni", PhotoName = "Pepperoni", PhotoPath = "~/images/pizzas/Pepperoni.png", Price = 30, PizzaComponents = pepperoniComponents
+                Id = 4, Name = "Pepperoni", PhotoName = "Pepperoni", PhotoPath = "/images/pizzas/Pepperoni.png", Price = 30
             };
 
             modelBuilder.Entity<Pizza>().HasData(new Pizza[] 
