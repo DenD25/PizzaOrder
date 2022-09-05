@@ -1,0 +1,15 @@
+﻿@model PizzaOrder.ViewModel.OrderUserViewModel
+
+<div class="card-page">
+    @foreach (var item in Model.Pizzas)
+    {
+        <div class="card-pizza">
+           <img class="card-photo" src="@item.PhotoPath" />        
+            <form asp-action="" asp-controller="OrderUser">
+                <input type="hidden" name="id" value="@item.Id" /> 
+                <input type="number" name="count" value="1" step="1" min="1" max="9" style="width:42px; height:40px; font-size:14px;"/>
+                <input type="submit" class="card-submit" value="Add"/>
+            </form>
+        </div>
+    }   
+</div>
