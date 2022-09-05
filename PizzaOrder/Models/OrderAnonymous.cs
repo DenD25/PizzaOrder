@@ -23,6 +23,8 @@ namespace PizzaOrder.Models
         public ICollection<Pizza>? Pizzas { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? EndTime { get; set; }
-        public bool? IsDone { get; set; } = false;
+        public bool? IsOrdered { get; set; } = false;
+        public bool? IsCooked { get; set; } = false;
+        public bool? IsDelivered { get; set; } = false;
     }
 }
