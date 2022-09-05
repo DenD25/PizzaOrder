@@ -192,3 +192,35 @@ input {
     height: 80px;
     width: 80px;
 }
+
+/* CARD */
+
+.card-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+.card-pizza {
+    width: 450px;
+    height: 425px;   
+    text-align: center;
+    border-bottom: 1px dashed black;
+    margin-top: 1rem;
+}
+
+.card-photo{
+    width:350px;
+    height:350px;
+}
+
+.card-submit {
+    width: 80px;
+    height: 45px;
+    background-color: #E5B350;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin-left: 1rem;
+}
