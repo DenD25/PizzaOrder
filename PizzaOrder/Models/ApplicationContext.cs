@@ -45,7 +45,9 @@ namespace PizzaOrder.Models
             modelBuilder
                 .Entity<OrderUser>()
                 .HasOne(t => t.User)
-                .WithOne(t => t.OrderUser);
+                .WithMany(t => t.OrderUsers)
+                .HasForeignKey(t => t.UserId)
+                .HasPrincipalKey(t => t.Id);
 
             modelBuilder
                 .Entity<OrderAnonymous>()

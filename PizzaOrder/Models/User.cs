@@ -25,6 +25,6 @@ namespace PizzaOrder.Models
         public string? HouseNumber { get; set; }
         public string? ApartmentsNumber { get; set; }
         public string? PostCode { get; set; }
-        public OrderUser? OrderUser { get; set; }
+        public ICollection<OrderUser>? OrderUsers { get; set; }
     }
 }
