@@ -43,6 +43,11 @@ namespace PizzaOrder.Models
                 .WithMany(t => t.OrderUsers);
 
             modelBuilder
+                .Entity<OrderUser>()
+                .HasOne(t => t.User)
+                .WithOne(t => t.OrderUser);
+
+            modelBuilder
                 .Entity<OrderAnonymous>()
                 .HasMany(t => t.Pizzas)
                 .WithMany(t => t.OrderAnonymous);
