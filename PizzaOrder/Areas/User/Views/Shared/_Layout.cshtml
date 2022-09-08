@@ -17,7 +17,7 @@
                 <h1>Pizza</h1>
             </div>
             <div class="header-links">
-                <a>Menu</a>
+                @Html.ActionLink("Menu", "MenuUser", "MenuUser")
                 <a>Address</a>
                 @Html.ActionLink("Profile", "Index", "Profile", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() })
                 <form asp-controller = "Account" asp-action="LogOut" asp-route-area=""> 
