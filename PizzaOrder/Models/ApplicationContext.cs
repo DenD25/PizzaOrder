@@ -65,8 +65,9 @@ namespace PizzaOrder.Models
 
             User adminUser = new User { Id = 1, Login = "admin", Password = "admin", RoleId = adminRole.Id, PhoneNumber = 999999999, City = "Warsaw", StreetName = "Gdanska", HouseNumber  = "1"};
             User managerUser = new User { Id = 2, Login = "manager", Password = "manager", RoleId = managerRole.Id, PhoneNumber = 888888888, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "1" };
+            User userUser = new User { Id = 3, Login = "user", Password = "user", RoleId = userRole.Id, PhoneNumber = 111222333, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "5" };
 
-            modelBuilder.Entity<User>().HasData(new User[] { adminUser, managerUser });
+            modelBuilder.Entity<User>().HasData(new User[] { adminUser, managerUser, userUser });
 
             // Adding components
 
