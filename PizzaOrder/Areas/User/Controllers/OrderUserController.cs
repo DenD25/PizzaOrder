@@ -81,8 +81,18 @@ namespace PizzaOrder.Areas.User.Controllers
                 return View(orderUser);
             }
 
-            return RedirectToAction("Index", "OrderUser");
+            return View();
         }
 
+        public IActionResult AddingData(int id)
+        {
+            OrderUser orderUser = db
+                .OrderUsers
+                .Include(x => x.Pizzas)
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.UserId == id);
+
+            return View(orderUser);
+        }
     }
 }
