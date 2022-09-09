@@ -3,12 +3,19 @@
 <div class="form-container">
     <div style="padding:1rem;">
         <h2>Your order:</h2>
+        @{
+            float? totalPrice = 0;
+        }
         @foreach (var item in Model.Pizzas)
         {
-            <p>@item.Count x @item.Name</p>
+           float? price = item.Count * item.Price;
+           totalPrice += price;
+
+            <p>@item.Count x @item.Name, price: @price</p>
         } 
+        <p>Total price: @totalPrice</p>
     </div>  
-    @Html.ActionLink("Continue", "Index", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})  
+    @Html.ActionLink("Continue", "AddingData", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})  
     <hr />
     @Html.ActionLink("Order more", "Index", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})
 </div>
