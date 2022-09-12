@@ -17,7 +17,7 @@ namespace PizzaOrder.Areas.User.Controllers
         {
             List<Pizza> pizzas = db.Pizzas.ToList();
             List<PizzaComponent> pizzaComponents = db.PizzaComponents.ToList();
-            OrderUser order = new OrderUser();
+            Order order = new Order();
 
             OrderUserViewModel ouvm = new OrderUserViewModel { OrderUser = order, PizzaComponents = pizzaComponents, Pizzas = pizzas };
 
@@ -26,7 +26,7 @@ namespace PizzaOrder.Areas.User.Controllers
 
         public async Task<IActionResult> AddingPizzas(int id, int count, int pizzaId)
         {
-            OrderUser orderUser = db
+            Order orderUser = db
                 .OrderUsers
                 .Include(x => x.Pizzas)
                 .Include(x => x.User)
@@ -34,7 +34,7 @@ namespace PizzaOrder.Areas.User.Controllers
 
             if (orderUser == null || orderUser.IsOrdered == true)
             {
-                OrderUser newOrder = new OrderUser();
+                Order newOrder = new Order();
 
                 newOrder.UserId = id;
                 newOrder.User = db
@@ -98,7 +98,7 @@ namespace PizzaOrder.Areas.User.Controllers
         {
             if (ModelState.IsValid)
             {
-                OrderUser orderUser = db
+                Order orderUser = db
                 .OrderUsers
                 .Include(x => x.User)
                 .FirstOrDefault(x => x.UserId == id);

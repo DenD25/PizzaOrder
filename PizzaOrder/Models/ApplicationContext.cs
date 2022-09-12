@@ -9,7 +9,7 @@ namespace PizzaOrder.Models
 
         public DbSet<User>? Users { get; set; }
         public DbSet<Role>? Roles { get; set; }
-        public DbSet<OrderUser>? OrderUsers { get; set; }
+        public DbSet<Order>? OrderUsers { get; set; }
         public DbSet<OrderAnonymous>? OrderAnonymous { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -38,12 +38,12 @@ namespace PizzaOrder.Models
                 .HasPrincipalKey(t => t.Id);
 
             modelBuilder
-                .Entity<OrderUser>()
+                .Entity<Order>()
                 .HasMany(t => t.Pizzas)
                 .WithMany(t => t.OrderUsers);
 
             modelBuilder
-                .Entity<OrderUser>()
+                .Entity<Order>()
                 .HasOne(t => t.User)
                 .WithMany(t => t.OrderUsers)
                 .HasForeignKey(t => t.UserId)

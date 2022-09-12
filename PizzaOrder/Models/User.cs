@@ -8,6 +8,8 @@ namespace PizzaOrder.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Login is required")]
         public string Login { get; set; }
+        [Required(ErrorMessage = "Please, write your name.")]
+        [StringLength(30)]
         public string? Name { get; set; }
         [DataType(DataType.Password)]
         public string? Password { get; set; }
@@ -26,6 +28,6 @@ namespace PizzaOrder.Models
         public string? HouseNumber { get; set; }
         public string? ApartmentsNumber { get; set; }
         public string? PostCode { get; set; }
-        public ICollection<OrderUser>? OrderUsers { get; set; }
+        public ICollection<Order>? OrderUsers { get; set; }
     }
 }

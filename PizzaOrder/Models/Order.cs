@@ -2,15 +2,13 @@
 
 namespace PizzaOrder.Models
 {
-    public class OrderUser
+    public class Order
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public User? User { get; set; }
-        [Required(ErrorMessage = "Please, write your name.")]
-        [StringLength(30)]
         public string? Name { get; set; }
         public ICollection<Pizza>? Pizzas { get; set; }
         public DateTime? CreateTime { get; set; }
