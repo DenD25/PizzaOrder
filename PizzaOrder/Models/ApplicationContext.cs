@@ -10,7 +10,6 @@ namespace PizzaOrder.Models
         public DbSet<User>? Users { get; set; }
         public DbSet<Role>? Roles { get; set; }
         public DbSet<Order>? OrderUsers { get; set; }
-        public DbSet<OrderAnonymous>? OrderAnonymous { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
