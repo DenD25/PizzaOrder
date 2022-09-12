@@ -1,2 +1,15 @@
-﻿<h1>Main Index page</h1>
-@Html.ActionLink("Order", "Index", "OrderUser", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() })
+﻿<div class="form-container">
+    <div class="form-title">
+        <h2 style="font-size:48px">Pizza</h2>
+    </div
+    <div class="form-title">
+        <h5>Wellcome</h5>
+        <p>Here you can order our pizzas!</p>
+        <p>Watch menu first or start ordering.</p> 
+    </div>
+    <div style="margin-top:20px;" class="flex">
+        <a class="submit-btn" asp-action="MenuUser" asp-controller="MenuUser">Menu</a>
+        @Html.ActionLink("Order", "Index", "OrderUser", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class="submit-btn" })
+    </div>
+    
+</div>
