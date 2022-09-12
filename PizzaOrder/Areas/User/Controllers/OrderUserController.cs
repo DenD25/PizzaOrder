@@ -40,7 +40,7 @@ namespace PizzaOrder.Areas.User.Controllers
                 newOrder.User = db
                     .Users
                     .FirstOrDefault(x => x.Id == id);
-                newOrder.Name = "None";                
+                newOrder.Name = "Name";                
                 newOrder.CreateTime = DateTime.Now;
 
                 Pizza orderPizza = db
@@ -86,13 +86,43 @@ namespace PizzaOrder.Areas.User.Controllers
 
         public IActionResult AddingData(int id)
         {
-            OrderUser orderUser = db
+            Models.User user = db
+                .Users
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddingData(Models.User user, int id, string name)
+        {
+            if (ModelState.IsValid)
+            {
+                OrderUser orderUser = db
                 .OrderUsers
-                .Include(x => x.Pizzas)
                 .Include(x => x.User)
                 .FirstOrDefault(x => x.UserId == id);
 
-            return View(orderUser);
+                orderUser.StreetName = user.StreetName;
+                orderUser.PhoneNumber = user.PhoneNumber;
+                orderUser.HouseNumber = user.HouseNumber;
+                orderUser.ApartmentsNumber = user.ApartmentsNumber;
+                orderUser.City = user.City;
+                orderUser.Email = user.Email;
+                orderUser.PostCode = user.PostCode;
+                orderUser.Name = name;
+                orderUser.IsOrdered = true;
+
+                db.OrderUsers.Update(orderUser);
+                await db.SaveChangesAsync();
+                return RedirectToAction("EndOrder");
+            }
+            return View(user);
+        }
+
+        public async Task<IActionResult> EndOrder(Models.User user)
+        {
+            return View();
         }
     }
 }
