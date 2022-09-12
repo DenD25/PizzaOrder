@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PizzaOrder.Models.Order>
+
+<table class="table"> 
+    <tr>
+       <th>Number</th>
+       <th>Name</th>
+       <th>Phone number</th>
+       <th>Address</th>
+       <th>Pizzas</th>
+       <th>Completed</th>>
+    <tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.PhoneNumber</td>
+        <td>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</td>    
+        <td>
+            @foreach (var pizzas in item.Pizzas)
+            {
+                @pizzas.Count @pizzas.Name 
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Confirm", "OrderCompleted", new {  id=@item.Id })
+        </td>
+    </tr>
+    }
+</table>
