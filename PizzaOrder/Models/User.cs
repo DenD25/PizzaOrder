@@ -8,6 +8,7 @@ namespace PizzaOrder.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Login is required")]
         public string Login { get; set; }
+        public string? Name { get; set; }
         [DataType(DataType.Password)]
         public string? Password { get; set; }
         public int? RoleId { get; set; }
