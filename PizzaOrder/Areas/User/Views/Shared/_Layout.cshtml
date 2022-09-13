@@ -17,8 +17,8 @@
                 <h1>Pizza</h1>
             </div>
             <div class="header-links">
-                @Html.ActionLink("Menu", "MenuUser", "MenuUser")
-                <a>Address</a>
+                <a asp-action="MenuUser" asp-controller="MenuUser">Menu</a>
+                <a asp-action="AddressUser" asp-controller="AddressUser">Address</a>
                 @Html.ActionLink("Profile", "Index", "Profile", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() })
                 <form asp-controller = "Account" asp-action="LogOut" asp-route-area=""> 
                     <input type = "submit" value = "Log out" class="logout-btn"/> 
@@ -31,7 +31,7 @@
     </main>
     <footer>
         <div>
-            <p style="font-size:18px;">Address: Warszaw, Gdanska 120<br />Phone number: 222 333 444<br />Email: pizza@oder.com</p>
+            <p style="font-size:18px;">Phone number: 222 333 444<br />Email: pizza@oder.com</p>
         </div>
         <div>
             <a href="https://github.com/DenD25">https://github.com/DenD25</a>
