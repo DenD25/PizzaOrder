@@ -36,5 +36,16 @@ namespace PizzaOrder.Areas.Manager.Controllers
 
             return RedirectToAction("OrderList");
         }
+
+        public IActionResult OrderDeliveryList()
+        {
+            List<Order> order = db
+                .OrderUsers
+                .Where(x => x.IsCooked == true)
+                .Include(x => x.Pizzas)
+                .ToList();
+
+            return View(order);
+        }
     }
 }
