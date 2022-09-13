@@ -19,6 +19,14 @@ a{
     color:black;
 }
 
+a:hover{
+    color: #E5B350;
+}
+
+a:active{
+    color:yellow;
+}
+
 header {
     position: absolute;
     width: 100%;
@@ -180,6 +188,8 @@ input {
     border-radius: 20px;
     margin: 0 auto;
 }
+
+
 
 .logout-btn {
     background-color: #E5B350;
