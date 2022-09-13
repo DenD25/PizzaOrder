@@ -6,6 +6,14 @@ h2 {
     color: #E5B350;
 }
 
+h3 {
+    color: #E5B350;
+}
+
+.p20{
+    font-size: 20px;
+}
+
 a{
     text-decoration:none;
     color:black;
