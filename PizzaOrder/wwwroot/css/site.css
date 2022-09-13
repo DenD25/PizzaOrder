@@ -24,7 +24,7 @@ a:hover{
 }
 
 a:active{
-    color:yellow;
+    color:#ffc95c;
 }
 
 header {
@@ -189,7 +189,15 @@ input {
     margin: 0 auto;
 }
 
+.submit-btn:hover{
+    background-color:#dea126;
+    color:white;
+}
 
+.submit-btn:active{
+    background-color:#ffc95c;
+    color:white;
+}
 
 .logout-btn {
     background-color: #E5B350;
