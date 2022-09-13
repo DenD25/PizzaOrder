@@ -1,0 +1,5 @@
+﻿body {
+    background-image: url("../images/background/pizza-manager.png");
+    background-repeat: no-repeat;
+    backdrop-filter: blur(2px);
+}
