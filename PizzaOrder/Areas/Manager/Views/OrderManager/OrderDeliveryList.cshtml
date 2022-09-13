@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PizzaOrder.Models.Order>
+
+<div class="flex"> 
+    <a class="submit-btn" asp-action="OrderList">Orders list</a>
+</div>
+<hr />
+<table class="table"> 
+    <tr>
+       <th>Number</th>
+       <th>Name</th>
+       <th>Phone number</th>
+       <th>Address</th>
+       <th>Pizzas</th>
+       <th>Delivered</th>
+    <tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.PhoneNumber</td>
+        <td>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</td>    
+        <td>
+            @foreach (var pizzas in item.Pizzas)
+            {
+                <p>@pizzas.Count x @pizzas.Name </p>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Confirm", "OrderDelivered", new {  id=@item.Id })
+        </td>
+    </tr>
+    }
+</table>
