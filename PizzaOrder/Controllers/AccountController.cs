@@ -85,7 +85,7 @@ namespace PizzaOrder.Controllers
                     }
                     if (user.Role.Name.ToString() == "manager")
                     {
-                        return RedirectToRoute("managerRoute", new { area = "Manager", controller = "Main", action = "Index" });
+                        return RedirectToRoute("managerRoute", new { area = "Manager", controller = "OrderManager", action = "OrderList" });
                     }
 
                     return RedirectToRoute("userRoute", new { area = "User", controller = "Home", action = "Index" });
