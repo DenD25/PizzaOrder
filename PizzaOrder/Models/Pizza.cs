@@ -16,6 +16,5 @@ namespace PizzaOrder.Models
         public int? Count { get; set; } = 1;
         public ICollection<PizzaComponent>? PizzaComponents { get; set; }
         public ICollection<Order>? OrderUsers { get; set; }
-        public ICollection<OrderAnonymous>? OrderAnonymous { get; set; }
     }
 }

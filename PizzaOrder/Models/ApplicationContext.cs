@@ -48,11 +48,6 @@ namespace PizzaOrder.Models
                 .HasForeignKey(t => t.UserId)
                 .HasPrincipalKey(t => t.Id);
 
-            modelBuilder
-                .Entity<OrderAnonymous>()
-                .HasMany(t => t.Pizzas)
-                .WithMany(t => t.OrderAnonymous);
-
             // Adding roles
             Role adminRole = new Role { Id = 1, Name = "admin" };
             Role userRole = new Role { Id = 2, Name = "user" };
@@ -62,9 +57,9 @@ namespace PizzaOrder.Models
 
             // Adding users
 
-            User adminUser = new User { Id = 1, Login = "admin", Password = "admin", RoleId = adminRole.Id, PhoneNumber = 999999999, City = "Warsaw", StreetName = "Gdanska", HouseNumber  = "1"};
-            User managerUser = new User { Id = 2, Login = "manager", Password = "manager", RoleId = managerRole.Id, PhoneNumber = 888888888, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "1" };
-            User userUser = new User { Id = 3, Login = "user", Password = "user", RoleId = userRole.Id, PhoneNumber = 111222333, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "5" };
+            User adminUser = new User { Id = 1, Login = "admin", Password = "admin", RoleId = adminRole.Id, PhoneNumber = 999999999, City = "Warsaw", StreetName = "Gdanska", HouseNumber  = "1", Name = "Admin" };
+            User managerUser = new User { Id = 2, Login = "manager", Password = "manager", RoleId = managerRole.Id, PhoneNumber = 888888888, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "1", Name = "Manager" };
+            User userUser = new User { Id = 3, Login = "user", Password = "user", RoleId = userRole.Id, PhoneNumber = 111222333, City = "Warsaw", StreetName = "Gdanska", HouseNumber = "5", Name="User" };
 
             modelBuilder.Entity<User>().HasData(new User[] { adminUser, managerUser, userUser });
 
