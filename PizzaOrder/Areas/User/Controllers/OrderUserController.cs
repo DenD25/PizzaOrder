@@ -27,12 +27,13 @@ namespace PizzaOrder.Areas.User.Controllers
             return View(ouvm);
         }
 
-        public async Task<IActionResult> AddingPizzas(int id, int count, int pizzaId)
+
+        [HttpPost]
+        public async Task<IActionResult> Index(int id, int count, int pizzaId)
         {
             Order orderUser = db
                 .OrderUsers
                 .Include(x => x.Pizzas)
-                .Include(x => x.User)
                 .FirstOrDefault(x => x.UserId == id);
 
             if (orderUser == null || orderUser.IsOrdered == true)
@@ -61,7 +62,7 @@ namespace PizzaOrder.Areas.User.Controllers
                 db.OrderUsers.Add(newOrder);
                 await db.SaveChangesAsync();
 
-                return View(newOrder);
+                return RedirectToAction("AddingPizzas", new { id = newOrder.Id });
             }
 
             else if(orderUser.IsOrdered == false)
@@ -81,10 +82,20 @@ namespace PizzaOrder.Areas.User.Controllers
                 db.OrderUsers.Update(orderUser);
                 await db.SaveChangesAsync();
 
-                return View(orderUser);
+                return RedirectToAction("AddingPizzas", new { id = orderUser.Id });
             }
 
             return View();
+        }
+
+        public IActionResult AddingPizzas(int id)
+        {
+            Order order = db
+                .OrderUsers
+                .Include(x => x.Pizzas)
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(order);
         }
 
         public IActionResult AddingData(int id)
@@ -130,11 +141,17 @@ namespace PizzaOrder.Areas.User.Controllers
 
         public async Task<IActionResult> DeletingOrder(int id)
         {
-            Order order= db
+            List<Order> order= db
                 .OrderUsers
-                .FirstOrDefault(x => x.Id == id);
+                .Where(x => x.IsOrdered == false)
+                .Where(x => x.UserId == id)
+                .ToList();
 
-            db.OrderUsers.Remove(order);
+            foreach(Order item in order)
+            {
+                db.OrderUsers.Remove(item);
+            }
+            
             db.SaveChangesAsync();
 
             return RedirectToAction("Index");
