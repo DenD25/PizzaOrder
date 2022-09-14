@@ -1,5 +1,13 @@
 ﻿@model PizzaOrder.ViewModel.OrderUserViewModel
 
+@if( Model.OrderUser != null && Model.OrderUser.IsOrdered == false)
+    {
+    <div class="flex">
+        @Html.ActionLink("Start new order", "DeletingOrder", new {  id=@Model.OrderUser.Id }, new { @class = "submit-btn"})  
+        @Html.ActionLink("Continue", "AddingData", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})         
+    </div>
+    <hr/>
+}
 <div class="card-page">
     @foreach (var item in Model.Pizzas)
     {

@@ -13,11 +13,14 @@ namespace PizzaOrder.Areas.User.Controllers
         {
             db = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
             List<Pizza> pizzas = db.Pizzas.ToList();
             List<PizzaComponent> pizzaComponents = db.PizzaComponents.ToList();
-            Order order = new Order();
+            Order order = db
+                .OrderUsers
+                .Where(x => x.IsOrdered == false)
+                .FirstOrDefault(x => x.UserId == id);
 
             OrderUserViewModel ouvm = new OrderUserViewModel { OrderUser = order, PizzaComponents = pizzaComponents, Pizzas = pizzas };
 
@@ -123,6 +126,18 @@ namespace PizzaOrder.Areas.User.Controllers
         public async Task<IActionResult> EndOrder(Models.User user)
         {
             return View();
+        }
+
+        public async Task<IActionResult> DeletingOrder(int id)
+        {
+            Order order= db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+
+            db.OrderUsers.Remove(order);
+            db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
     }
 }
