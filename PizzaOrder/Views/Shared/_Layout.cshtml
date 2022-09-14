@@ -12,11 +12,11 @@
     <header>
         <div class="header-container">
             <div class="header-logo">
-                <h1>Pizza</h1>
+                <a asp-action="Index" asp-controller="Main"><h1>Pizza</h1></a>
             </div>
             <div class="header-links">
-                <a>Menu</a>
-                <a>Address</a>
+                <a asp-action="Menu" asp-controller="Menu">Menu</a>
+                <a asp-action="Address" asp-controller="Address">Address</a>
                 <a asp-action="Login" asp-controller="Account">Log in</a>
             </div>
         </div>
@@ -26,16 +26,16 @@
     </main>
     <footer>
         <div>
-            <p style="font-size:18px;">Address: Warszaw, Gdanska 120<br />Phone number: 222 333 444<br />Email: pizza@oder.com</p>
+            <p style="font-size:18px;">Phone number: 222 333 444<br />Email: pizza@oder.com</p>
         </div>
         <div>
             <a href="https://github.com/DenD25">https://github.com/DenD25</a>
         </div>
         <div class="footer-icons">
-            <a class="icons"><img src="~/images/icons/facebook.png" /></a>
-            <a class="icons"><img src="~/images/icons/instagram.png" /></a>
-            <a class="icons"><img src="~/images/icons/messenger.png" /></a>
-            <a class="icons"><img src="~/images/icons/maps-and-flags.png" /></a>          
+            <a class="icons" href="https://www.instagram.com" target="_blank"><img src="~/images/icons/facebook.png" /></a>
+            <a class="icons" href="https://www.facebook.com" target="_blank"><img src="~/images/icons/instagram.png" /></a>
+            <a class="icons" href="https://www.messenger.com" target="_blank"><img src="~/images/icons/messenger.png" /></a>
+            <a class="icons" href="https://www.google.com/maps/@@52.2311173,21.0041503,686m/data=!3m1!1e3" target="_blank"><img src="~/images/icons/maps-and-flags.png" /></a>          
         </div>
     </footer>
 </body>
