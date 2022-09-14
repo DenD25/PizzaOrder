@@ -1,0 +1,25 @@
+﻿@model IEnumerable<PizzaOrder.Models.Pizza>
+
+<table class="table"> 
+    <tr>
+       <th>Photo</th>
+       <th>Name</th>
+       <th>Components</th>
+       <th>Price</th>
+    <tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td><img class="icon" src="@item.PhotoPath"/></td>
+        <td>@item.Name</td>
+        <td>
+            @foreach (var comp in item.PizzaComponents)
+            {
+                @comp.Name
+                
+            }
+        </td>
+        <td>@item.Price</td>       
+    </tr>
+    }
+</table>
