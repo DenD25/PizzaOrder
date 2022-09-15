@@ -1,0 +1,38 @@
+﻿@model PizzaOrder.Models.Order
+ 
+<div class="form-container">
+    <form asp-action="AddingDataAnonymous" asp-controller="OrderAnonymous">
+    <div class="form-title">
+         <h2>Complete this form</h2>
+    </div> 
+    <div class="form-group">
+        <input type="text" asp-for="Name" placeholder="Name" required/>
+        <input type="email" asp-for="Email " placeholder="Email"/>        
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;"></span>
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="City" placeholder="City" required/>
+        <input style="width:220px" type="text" asp-for="StreetName" placeholder="Street" required/>
+        <input style="width:60px" type="number" asp-for="HouseNumber" placeholder="House number" required/>
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;float:left;" asp-validation-for="City"></span>
+        <span asp-validation-for="StreetName"></span>
+        <span asp-validation-for="HouseNumber"></span>
+    </div> 
+    <div class="form-group">
+        <input type="tel" pattern="[0-9]{9}" asp-for="PhoneNumber" placeholder="Phone number" required/>
+        <input style="width:140px" type="number" asp-for="ApartmentsNumber" placeholder="Apart. No"/>        
+        <input style="width:140px" type="number" asp-for="PostCode" placeholder="Post code"/>         
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;" class="text-danger" asp-validation-for="PhoneNumber"></span>
+    </div> 
+    <div class="form-group" "margin-top:20px">
+         <input type="submit" value="Confirm order" class="submit-btn" />
+    </div> 
+    </form>
+</div>
