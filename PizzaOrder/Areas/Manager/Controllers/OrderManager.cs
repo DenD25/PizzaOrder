@@ -43,6 +43,7 @@ namespace PizzaOrder.Areas.Manager.Controllers
             List<Order> orders = db
                 .OrderUsers
                 .Where(x => x.IsCooked == true)
+                .Where(x => x.IsDelivered == false)
                 .Include(x => x.Pizzas)
                 .ToList();
 
