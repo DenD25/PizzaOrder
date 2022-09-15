@@ -1,4 +1,15 @@
-﻿<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿<div class="form-container">
+    <div class="form-title">
+        <h2 style="font-size:48px">Pizza</h2>
+    </div
+    <div class="form-title">
+        <h5>Wellcome</h5>
+        <p>Here you can order our pizzas!</p>
+        <p>Watch menu first or start ordering.</p> 
+    </div>
+    <div style="margin-top:20px;" class="flex">
+        <a class="submit-btn" asp-action="Menu" asp-controller="Menu">Menu</a>
+        @Html.ActionLink("Order", "Index", "OrderAnonymous", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class="submit-btn" })
+    </div>
+    
 </div>
