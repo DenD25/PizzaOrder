@@ -32,7 +32,6 @@ namespace PizzaOrder.Controllers
         {
             Order order = new Order();
 
-            order.Name = "Name";
             order.CreateTime = DateTime.Now;
 
             Pizza orderPizza = db
@@ -50,7 +49,7 @@ namespace PizzaOrder.Controllers
             db.OrderUsers.Add(order);
             await db.SaveChangesAsync();
             
-            return RedirectToAction("AddingPizzas", new { id = order.Id });           
+            return RedirectToAction("AddingPizzasAnonymous", new { id = order.Id });           
         }
 
         public IActionResult AddingPizzasAnonymous(int id)
@@ -60,6 +59,41 @@ namespace PizzaOrder.Controllers
                 .Include(x => x.Pizzas)
                 .FirstOrDefault(x => x.Id == id);
 
+            return View(order);
+        }
+
+        public IActionResult AddingDataAnonymous(int id)
+        {
+            Order orderAnonymous = db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(orderAnonymous);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddingDataAnonymous(Order order, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Order orderAnonymous = db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+
+                orderAnonymous.StreetName = order.StreetName;
+                orderAnonymous.PhoneNumber = order.PhoneNumber;
+                orderAnonymous.HouseNumber = order.HouseNumber;
+                orderAnonymous.ApartmentsNumber = order.ApartmentsNumber;
+                orderAnonymous.City = order.City;
+                orderAnonymous.Email = order.Email;
+                orderAnonymous.PostCode = order.PostCode;
+                orderAnonymous.Name = order.Name;
+                orderAnonymous.IsOrdered = true;
+
+                db.OrderUsers.Update(orderAnonymous);
+                await db.SaveChangesAsync();
+                return RedirectToAction("EndOrderAnonymous");
+            }
             return View(order);
         }
     }
