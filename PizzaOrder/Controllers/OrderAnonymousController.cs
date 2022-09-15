@@ -14,9 +14,17 @@ namespace PizzaOrder.Controllers
             db = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? id)
         {
-            return View();
+            List<Pizza> pizzas = db.Pizzas.ToList();
+            List<PizzaComponent> pizzaComponents = db.PizzaComponents.ToList();
+            Order order = db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+
+            OrderUserViewModel ouvm = new OrderUserViewModel { OrderUser = order, PizzaComponents = pizzaComponents, Pizzas = pizzas };
+
+            return View(ouvm);
         }
 
         [HttpPost]
