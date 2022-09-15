@@ -14,14 +14,14 @@ namespace PizzaOrder.Areas.Manager.Controllers
         }
         public IActionResult OrderList()
         {
-            List<Order> order = db
+            List<Order> orders = db
                 .OrderUsers
                 .Where(x => x.IsOrdered == true)
                 .Where(x => x.IsCooked == false)
                 .Include(x => x.Pizzas)
                 .ToList();
                 
-            return View(order);
+            return View(orders);
         }
 
         public IActionResult OrderCooked(int id)
@@ -40,13 +40,13 @@ namespace PizzaOrder.Areas.Manager.Controllers
 
         public IActionResult OrderDeliveryList()
         {
-            List<Order> order = db
+            List<Order> orders = db
                 .OrderUsers
                 .Where(x => x.IsCooked == true)
                 .Include(x => x.Pizzas)
                 .ToList();
 
-            return View(order);
+            return View(orders);
         }
 
         public IActionResult OrderDelivered(int id)
@@ -56,11 +56,23 @@ namespace PizzaOrder.Areas.Manager.Controllers
                 .FirstOrDefault(x => x.Id == id);
 
             order.IsDelivered = true;
+            order.EndTime = DateTime.Now;
 
             db.OrderUsers.Update(order);
             db.SaveChanges();
 
             return RedirectToAction("OrderDeliveryList");
+        }
+
+        public IActionResult OrderDone()
+        {
+            List<Order> orders = db
+                .OrderUsers
+                .Where(x => x.IsDelivered == true)
+                .Include(x => x.Pizzas)
+                .ToList();
+
+            return View(orders);
         }
     }
 }
