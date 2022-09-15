@@ -18,5 +18,32 @@ namespace PizzaOrder.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Index( int count, int pizzaId)
+        {
+            Order order = new Order();
+
+            order.Name = "Name";
+            order.CreateTime = DateTime.Now;
+
+            Pizza orderPizza = db
+                    .Pizzas
+                    .FirstOrDefault(x => x.Id == pizzaId);
+
+            List<Pizza> pizzaList = new List<Pizza>();
+
+            orderPizza.Count = count;
+
+            pizzaList.Add(orderPizza);
+
+            order.Pizzas = pizzaList;
+
+            db.OrderUsers.Add(order);
+            await db.SaveChangesAsync();
+            
+            return RedirectToAction("AddingPizzas", new { id = order.Id });
+            
+        }
     }
 }
