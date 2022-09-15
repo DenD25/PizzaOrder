@@ -1,0 +1,21 @@
+﻿@model PizzaOrder.Models.Order
+
+<div class="form-container">
+    <div style="padding:1rem;">
+        <h2>Your order:</h2>
+        @{
+            float? totalPrice = 0;
+        }
+        @foreach (var item in Model.Pizzas)
+        {
+           float? price = item.Count * item.Price;
+           totalPrice += price;
+
+            <p>@item.Count x @item.Name, price: @price</p>
+        } 
+        <p>Total price: @totalPrice</p>
+    </div>  
+    @Html.ActionLink("Continue", "AddingDataAnonymous", new {  id=@Model.Id }, new { @class = "submit-btn"})  
+    <hr />
+    @Html.ActionLink("Order more", "Index", new {  id=@Model.Id }, new { @class = "submit-btn"})
+</div>
