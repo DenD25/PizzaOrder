@@ -9,7 +9,7 @@
     </div>
     <div style="margin-top:20px;" class="flex">
         <a class="submit-btn" asp-action="Menu" asp-controller="Menu">Menu</a>
-        @Html.ActionLink("Order", "Index", "OrderAnonymous", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class="submit-btn" })
+        <a class="submit-btn" asp-action="Index" asp-controller="OrderAnonymous">Order</a>
     </div>
     
 </div>
