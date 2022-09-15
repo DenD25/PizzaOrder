@@ -1,0 +1,23 @@
+﻿@model PizzaOrder.ViewModel.OrderUserViewModel
+
+@if( Model.OrderUser != null && Model.OrderUser.IsOrdered == false)
+    {
+    <div class="flex">
+        @Html.ActionLink("Start new order", "DeletingOrderAnonymous", new {  id=@Model.OrderUser.Id }, new { @class = "submit-btn"})  
+        @Html.ActionLink("Continue", "AddingPizzasAnonymous", new {  id=@Model.OrderUser.Id }, new { @class = "submit-btn"})         
+    </div>
+    <hr/>
+}
+<div class="card-page">
+    @foreach (var item in Model.Pizzas)
+    {
+        <div class="card-pizza">
+           <img class="card-photo" src="@item.PhotoPath" />        
+            <form asp-action="Index" asp-controller="OrderUserAddingAnonymous">
+                <input type="hidden" name="pizzaId" value="@item.Id" /> 
+                <input type="number" name="count" value="1" step="1" min="1" max="9" style="width:42px; height:40px; font-size:14px;"/>
+                <input type="submit" class="card-submit" value="Add"/>
+            </form>
+        </div>
+    }   
+</div>
