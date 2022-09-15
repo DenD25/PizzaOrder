@@ -101,5 +101,17 @@ namespace PizzaOrder.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> DeletingOrderAnonymous(int id)
+        {
+            Order order = db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+
+            db.OrderUsers.Remove(order);
+            db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }
