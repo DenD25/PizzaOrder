@@ -43,8 +43,7 @@ namespace PizzaOrder.Areas.User.Controllers
                 newOrder.UserId = id;
                 newOrder.User = db
                     .Users
-                    .FirstOrDefault(x => x.Id == id);
-                newOrder.Name = "Name";                
+                    .FirstOrDefault(x => x.Id == id);           
                 newOrder.CreateTime = DateTime.Now;
 
                 Pizza orderPizza = db
@@ -108,7 +107,7 @@ namespace PizzaOrder.Areas.User.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddingData(Models.User user, int id, string name)
+        public async Task<IActionResult> AddingData(Models.User user, int id)
         {
             if (ModelState.IsValid)
             {
@@ -124,7 +123,7 @@ namespace PizzaOrder.Areas.User.Controllers
                 orderUser.City = user.City;
                 orderUser.Email = user.Email;
                 orderUser.PostCode = user.PostCode;
-                orderUser.Name = name;
+                orderUser.Name = user.Name;
                 orderUser.IsOrdered = true;
 
                 db.OrderUsers.Update(orderUser);
@@ -134,7 +133,7 @@ namespace PizzaOrder.Areas.User.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> EndOrder(Models.User user)
+        public async Task<IActionResult> EndOrder()
         {
             return View();
         }
