@@ -17,6 +17,7 @@ namespace PizzaOrder.Areas.Manager.Controllers
             List<Order> order = db
                 .OrderUsers
                 .Where(x => x.IsOrdered == true)
+                .Where(x => x.IsCooked == false)
                 .Include(x => x.Pizzas)
                 .ToList();
                 
@@ -46,6 +47,20 @@ namespace PizzaOrder.Areas.Manager.Controllers
                 .ToList();
 
             return View(order);
+        }
+
+        public IActionResult OrderDelivered(int id)
+        {
+            Order order = db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+
+            order.IsDelivered = true;
+
+            db.OrderUsers.Update(order);
+            db.SaveChanges();
+
+            return RedirectToAction("OrderDeliveryList");
         }
     }
 }
