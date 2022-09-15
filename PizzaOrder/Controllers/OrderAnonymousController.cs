@@ -96,5 +96,10 @@ namespace PizzaOrder.Controllers
             }
             return View(order);
         }
+
+        public IActionResult EndOrderAnonymous()
+        {
+            return View();
+        }
     }
 }
