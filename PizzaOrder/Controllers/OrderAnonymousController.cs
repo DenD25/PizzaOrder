@@ -42,8 +42,17 @@ namespace PizzaOrder.Controllers
             db.OrderUsers.Add(order);
             await db.SaveChangesAsync();
             
-            return RedirectToAction("AddingPizzas", new { id = order.Id });
-            
+            return RedirectToAction("AddingPizzas", new { id = order.Id });           
+        }
+
+        public IActionResult AddingPizzasAnonymous(int id)
+        {
+            Order order = db
+                .OrderUsers
+                .Include(x => x.Pizzas)
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(order);
         }
     }
 }
