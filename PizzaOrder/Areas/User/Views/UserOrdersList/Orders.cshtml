@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PizzaOrder.Models.Order>
+
+<div class="flex"> 
+    <a class="submit-btn" asp-action="Index" asp-controller="Home">Return</a>
+</div>
+<hr />
+<table class="table"> 
+    <tr>
+       <th>Name</th>
+       <th>Address</th>
+       <th>Pizzas</th>
+       <th>Ordered time</th>
+       <th>Delivered time</th>
+       <th>Status</th>
+    <tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</td>    
+        <td>
+            @foreach (var pizzas in item.Pizzas)
+            {
+                <p>@pizzas.Count x @pizzas.Name </p>
+            }
+        </td>
+        <td>@item.CreateTime</td>
+        <td>
+            @if(item.EndTime != null)
+            {
+                @item.EndTime
+            }
+            <p>Not delivered yet</p>
+        </td>
+        <td>
+            @if(item.IsCooked == false)
+            {
+                <p>Cooking</p>
+            }
+            @if(item.IsCooked == true)
+            {
+                <p>On the way to you :)</p>
+            }
+        </td>
+    </tr>
+    }
+</table>
