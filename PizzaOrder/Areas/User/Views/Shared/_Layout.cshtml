@@ -19,6 +19,7 @@
             <div class="header-links">
                 <a asp-action="MenuUser" asp-controller="MenuUser">Menu</a>
                 <a asp-action="AddressUser" asp-controller="AddressUser">Address</a>
+                @Html.ActionLink("Orders", "Orders", "UserOrdersList", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() })
                 @Html.ActionLink("Profile", "Index", "Profile", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() })
                 <form asp-controller = "Account" asp-action="LogOut" asp-route-area=""> 
                     <input type = "submit" value = "Log out" class="logout-btn"/> 
