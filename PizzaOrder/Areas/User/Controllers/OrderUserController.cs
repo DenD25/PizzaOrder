@@ -34,6 +34,7 @@ namespace PizzaOrder.Areas.User.Controllers
             Order orderUser = db
                 .OrderUsers
                 .Include(x => x.Pizzas)
+                .Where(x => x.IsOrdered == false)
                 .FirstOrDefault(x => x.UserId == id);
 
             if (orderUser == null || orderUser.IsOrdered == true)
@@ -114,6 +115,7 @@ namespace PizzaOrder.Areas.User.Controllers
                 Order orderUser = db
                 .OrderUsers
                 .Include(x => x.User)
+                .Where(x => x.IsOrdered == false)
                 .FirstOrDefault(x => x.UserId == id);
 
                 orderUser.StreetName = user.StreetName;
