@@ -20,7 +20,15 @@
         <td>@item.Id</td>
         <td>@item.Name</td>
         <td>@item.PhoneNumber</td>
-        <td>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</td>    
+        <td>
+            @if(item.Delivering == false)
+            {
+                <p>Receiving from pizzeria</p>
+            }
+            else{
+                <p>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</p> 
+            }   
+        </td>    
         <td>
             @foreach (var pizzas in item.Pizzas)
             {
