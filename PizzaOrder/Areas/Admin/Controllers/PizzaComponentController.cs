@@ -5,7 +5,7 @@ using PizzaOrder.Models;
 
 namespace PizzaOrder.Areas.Admin.Controllers
 {
-    
+    [Authorize(Roles = "admin")]
     public class PizzaComponentController : Controller
     {
         ApplicationContext db;

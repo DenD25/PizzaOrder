@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaOrder.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PizzaOrder.Areas.Manager.Controllers
 {
+    [Authorize(Roles = "manager")]
     public class OrderManager : Controller
     {
         ApplicationContext db;

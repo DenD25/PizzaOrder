@@ -4,10 +4,11 @@ using PizzaOrder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PizzaOrder.Models;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace PizzaOrder.Areas.User.Controllers
 {
+    [Authorize(Roles = "user")]
     public class UserOrdersListController : Controller
     {
         ApplicationContext db;

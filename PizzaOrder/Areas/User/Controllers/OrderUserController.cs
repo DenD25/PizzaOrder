@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PizzaOrder.Models;
 using PizzaOrder.ViewModel;
 
 namespace PizzaOrder.Areas.User.Controllers
 {
+    [Authorize(Roles = "user")]
     public class OrderUserController : Controller
     {
         ApplicationContext db;
