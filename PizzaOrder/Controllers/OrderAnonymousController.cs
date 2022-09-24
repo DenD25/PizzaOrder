@@ -28,28 +28,56 @@ namespace PizzaOrder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index( int count, int pizzaId)
+        public async Task<IActionResult> Index( int? id, int count, int pizzaId)
         {
-            Order order = new Order();
+            Order ordercheck = db
+                .OrderUsers
+                .Include(x => x.Pizzas)
+                .Where(x => x.IsOrdered == false)
+                .FirstOrDefault(x => x.Id == id);
 
-            order.CreateTime = DateTime.Now;
-
-            Pizza orderPizza = db
+            if(ordercheck != null)
+            {
+                Pizza orderPizza = db
                     .Pizzas
                     .FirstOrDefault(x => x.Id == pizzaId);
 
-            List<Pizza> pizzaList = new List<Pizza>();
+                List<Pizza> pizzaList = ordercheck.Pizzas.ToList();
 
-            orderPizza.Count = count;
+                orderPizza.Count = count;
 
-            pizzaList.Add(orderPizza);
+                pizzaList.Add(orderPizza);
 
-            order.Pizzas = pizzaList;
+                ordercheck.Pizzas = pizzaList;
 
-            db.OrderUsers.Add(order);
-            await db.SaveChangesAsync();
-            
-            return RedirectToAction("AddingPizzasAnonymous", new { id = order.Id });           
+                db.OrderUsers.Update(ordercheck);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("AddingPizzasAnonymous", new { id = ordercheck.Id });
+            }
+            else
+            {
+                Order order = new Order();
+
+                order.CreateTime = DateTime.Now;
+
+                Pizza orderPizza = db
+                        .Pizzas
+                        .FirstOrDefault(x => x.Id == pizzaId);
+
+                List<Pizza> pizzaList = new List<Pizza>();
+
+                orderPizza.Count = count;
+
+                pizzaList.Add(orderPizza);
+
+                order.Pizzas = pizzaList;
+
+                db.OrderUsers.Add(order);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("AddingPizzasAnonymous", new { id = order.Id });
+            }                     
         }
 
         public IActionResult AddingPizzasAnonymous(int id)
