@@ -17,7 +17,15 @@
     {
     <tr>
         <td>@item.Name</td>
-        <td>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</td>    
+        <td>
+            @if(item.Delivering == false)
+            {
+                <p>Receiving from pizzeria</p>
+            }
+            else{
+                <p>@item.City, @item.StreetName @item.HouseNumber, Ap: @item.ApartmentsNumber, @item.PostCode</p> 
+            }          
+        </td>    
         <td>
             @foreach (var pizzas in item.Pizzas)
             {
@@ -37,9 +45,17 @@
             {
                 <p>Cooking</p>
             }
-            @if(item.IsCooked == true)
+            @if(item.IsCooked == true && item.Delivering == false)
+            {
+                <p>Your pizza is waiting for you</p>
+            }
+            @if(item.IsCooked == true && item.Delivering == true)
             {
                 <p>On the way to you :)</p>
+            }
+            @if(item.IsDelivered == true)
+            {
+                <p>Received</p>
             }
         </td>
     </tr>
