@@ -1,0 +1,32 @@
+﻿@model PizzaOrder.Models.User
+ 
+<div class="form-container">
+    <form asp-action="AddingDataSpot" asp-controller="OrderUser">
+    <div class="form-title">
+         <h2>Complete this form</h2>
+    </div> 
+    <div class="form-group">
+        <input type="text" asp-for="Name" placeholder="Name" required/>
+        @if(@Model.Email != null){
+            <input type="email" asp-for="Email" placeholder="@Model.Email"/>       
+        }
+        else
+        {
+            <input type="email" asp-for="Email " placeholder="Email"/>
+        }         
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;"></span>
+        <span asp-validation-for="Email"></span>
+    </div> 
+    <div class="form-group">
+        <input type="tel" pattern="[0-9]{9}" asp-for="PhoneNumber" placeholder="@Model.PhoneNumber" required/>        
+    </div>
+    <div class="form-invalid-flex">
+        <span style="width:50%;" class="text-danger" asp-validation-for="PhoneNumber"></span>
+    </div> 
+    <div class="form-group" "margin-top:20px">
+         <input type="submit" value="Confirm order" class="submit-btn" />
+    </div> 
+    </form>
+</div>
