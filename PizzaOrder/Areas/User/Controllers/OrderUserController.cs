@@ -127,17 +127,54 @@ namespace PizzaOrder.Areas.User.Controllers
                 orderUser.PostCode = user.PostCode;
                 orderUser.Name = user.Name;
                 orderUser.IsOrdered = true;
+                orderUser.Delivering = true;
 
                 db.OrderUsers.Update(orderUser);
                 await db.SaveChangesAsync();
-                return RedirectToAction("EndOrder");
+                return RedirectToAction("EndOrder", new { id = orderUser.Id });
             }
             return View(user);
         }
 
-        public async Task<IActionResult> EndOrder()
+        public IActionResult AddingDataSpot(int id)
         {
-            return View();
+            Models.User user = db
+                .Users
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddingDataSpot(Models.User user, int id)
+        {
+            if (user.Name != null && user.PhoneNumber != null)
+            {
+                Order orderUser = db
+                .OrderUsers
+                .Include(x => x.User)
+                .Where(x => x.IsOrdered == false)
+                .FirstOrDefault(x => x.UserId == id);
+
+                orderUser.PhoneNumber = user.PhoneNumber;
+                orderUser.Email = user.Email;
+                orderUser.Name = user.Name;
+                orderUser.IsOrdered = true;
+                orderUser.Delivering = false;
+
+                db.OrderUsers.Update(orderUser);
+                await db.SaveChangesAsync();
+                return RedirectToAction("EndOrder", new { id = orderUser.Id });
+            }
+            return View(user);
+        }
+
+        public IActionResult EndOrder(int? id)
+        {
+            Order order = db
+                .OrderUsers
+                .FirstOrDefault(x => x.Id == id);
+            return View(order);
         }
 
         public async Task<IActionResult> DeletingOrder(int id)
