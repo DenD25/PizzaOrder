@@ -14,8 +14,15 @@
             <p>@item.Count x @item.Name, price: @price</p>
         } 
         <p>Total price: @totalPrice</p>
-    </div>  
-    @Html.ActionLink("Continue", "AddingData", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})  
+    </div>
+    <div>
+        <h4>Choose the option of receiving your order</h4>
+        <div class="flex" style="justify-content: space-between; width: 400px; margin: 0 auto; padding: 10px 0; align-items: center;">
+             @Html.ActionLink("Delivering", "AddingData", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})  
+            <p>or</p>
+            @Html.ActionLink("Get on the spot", "AddingDataSpot", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"}) 
+        </div>        
+    </div>
     <hr />
     @Html.ActionLink("Order more", "Index", new {  id=@User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault() }, new { @class = "submit-btn"})
 </div>
