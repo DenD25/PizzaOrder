@@ -15,7 +15,14 @@
         } 
         <p>Total price: @totalPrice</p>
     </div>  
-    @Html.ActionLink("Continue", "AddingDataAnonymous", new {  id=@Model.Id }, new { @class = "submit-btn"})  
+    <div>
+        <h4>Choose the option of receiving your order</h4>
+        <div class="flex" style="justify-content: space-between; width: 400px; margin: 0 auto; padding: 10px 0; align-items: center;">
+             @Html.ActionLink("Delivering", "AddingDataAnonymous", new {  id=@Model.Id }, new { @class = "submit-btn"})  
+            <p>or</p>
+            @Html.ActionLink("Get on the spot", "AddingDataSpotAnonymous", new {  id=@Model.Id }, new { @class = "submit-btn"}) 
+        </div>        
+    </div>
     <hr />
     @Html.ActionLink("Order more", "Index", new {  id=@Model.Id }, new { @class = "submit-btn"})
 </div>
