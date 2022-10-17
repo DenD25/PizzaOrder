@@ -92,15 +92,14 @@ namespace PizzaOrder.Controllers
 
         public IActionResult AddingDataAnonymous(int id)
         {
-            Order orderAnonymous = db
-                .OrderUsers
-                .FirstOrDefault(x => x.Id == id);
 
-            return View(orderAnonymous);
+            ViewData["OrderId"] = id;
+
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddingDataAnonymous(Order order, int id)
+        public async Task<IActionResult> AddingDataAnonymous(UserAnonymous user, int id)
         {
             if (ModelState.IsValid)
             {
@@ -108,14 +107,14 @@ namespace PizzaOrder.Controllers
                 .OrderUsers
                 .FirstOrDefault(x => x.Id == id);
 
-                orderAnonymous.StreetName = order.StreetName;
-                orderAnonymous.PhoneNumber = order.PhoneNumber;
-                orderAnonymous.HouseNumber = order.HouseNumber;
-                orderAnonymous.ApartmentsNumber = order.ApartmentsNumber;
-                orderAnonymous.City = order.City;
-                orderAnonymous.Email = order.Email;
-                orderAnonymous.PostCode = order.PostCode;
-                orderAnonymous.Name = order.Name;
+                orderAnonymous.StreetName = user.StreetName;
+                orderAnonymous.PhoneNumber = user.PhoneNumber;
+                orderAnonymous.HouseNumber = user.HouseNumber;
+                orderAnonymous.ApartmentsNumber = user.ApartmentsNumber;
+                orderAnonymous.City = user.City;
+                orderAnonymous.Email = user.Email;
+                orderAnonymous.PostCode = user.PostCode;
+                orderAnonymous.Name = user.Name;
                 orderAnonymous.IsOrdered = true;
                 orderAnonymous.Delivering = true;
 
@@ -123,29 +122,27 @@ namespace PizzaOrder.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("EndOrderAnonymous", new { id = orderAnonymous.Id });
             }
-            return View(order);
+            return View(user);
         }
 
         public IActionResult AddingDataSpotAnonymous(int id)
         {
-            Order orderAnonymous = db
-                .OrderUsers
-                .FirstOrDefault(x => x.Id == id);
+            ViewData["OrderId"] = id;
 
-            return View(orderAnonymous);
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddingDataSpotAnonymous(Order order, int id)
+        public async Task<IActionResult> AddingDataSpotAnonymous(UserAnonymous user, int id)
         {
-            if (order.PhoneNumber != null && order.Name != null)
+            if (user.PhoneNumber != null && user.Name != null)
             {
                 Order orderAnonymous = db
                 .OrderUsers
                 .FirstOrDefault(x => x.Id == id);
 
-                orderAnonymous.PhoneNumber = order.PhoneNumber;
-                orderAnonymous.Name = order.Name;
+                orderAnonymous.PhoneNumber = user.PhoneNumber;
+                orderAnonymous.Name = user.Name;
                 orderAnonymous.IsOrdered = true;
                 orderAnonymous.Delivering = false;
 
@@ -153,7 +150,7 @@ namespace PizzaOrder.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("EndOrderAnonymous", new { id = orderAnonymous.Id });
             }
-            return View(order);
+            return View(user);
         }
 
         public IActionResult EndOrderAnonymous(int id)

@@ -1,4 +1,4 @@
-﻿@model PizzaOrder.Models.Order
+﻿@model PizzaOrder.Models.UserAnonymous
  
 <div class="form-container">
     <form asp-action="AddingDataAnonymous" asp-controller="OrderAnonymous">
@@ -8,6 +8,7 @@
     <div class="form-group">
         <input type="text" asp-for="Name" placeholder="Name" required/>
         <input type="email" asp-for="Email " placeholder="Email"/>        
+        <input type="hidden" name="id" value="@ViewData["OrderId"]" />
     </div>
     <div class="form-invalid-flex">
         <span style="width:50%;"></span>
